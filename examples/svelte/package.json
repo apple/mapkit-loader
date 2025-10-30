@@ -1,0 +1,23 @@
+{
+  "name": "mapkit-example-svelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc -p ./tsconfig.json",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@apple/mapkit-loader": "file:../..",
+    "svelte": "^5.38.1"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6.1.1",
+    "@tsconfig/svelte": "^5.0.4",
+    "svelte-check": "^4.3.1",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.2"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "name": "@apple/mapkit-loader",
+  "version": "0.1.0",
+  "description": "Apple MapKit JS Loader",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs"
+    }
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git_url"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "scripts": {
+    "setup": "npm install && npx simple-git-hooks && npm run build && npm run setup:playwright",
+    "setup:playwright": "npx playwright install --with-deps",
+    "dev": "vite",
+    "start": "vite --open '/tests/dev-server/index.html'",
+    "prebuild": "rm -rf dist",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build:esm": "tsc --module ES2020 --outDir dist/esm",
+    "prepublishOnly": "npm run build & npm run check",
+    "check": "npm run typecheck && npm run lint:check && npm run format:check",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier -c .",
+    "format:fix": "prettier --write .",
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test",
+    "test:e2e:debug": "PWDEBUG=1 playwright test --ui --debug",
+    "test:server": "vite",
+    "typecheck": "npm run typecheck:source && npm run typecheck:tests && npm run typecheck:examples",
+    "typecheck:source": "tsc --project . --noEmit",
+    "typecheck:tests": "tsc --project tests/tsconfig.json --noEmit",
+    "typecheck:examples": "set -x; for dir in examples/*/; do (cd \"$dir\" && tsc --project ./tsconfig.json --noEmit); done"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "lint-staged": "^16.1.5",
+    "prettier": "3.5.3",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "5.8.3",
+    "typescript-eslint": "^8.41.0",
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "@types/apple-mapkit": "^5.80.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{json,css,scss,md,html,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  }
+}

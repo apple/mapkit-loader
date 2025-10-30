@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["apple-mapkit", "playwright/test"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "paths": {
+      "@apple/mapkit-loader": ["../src/"]
+    }
+  },
+  "files": ["./vite.d.ts"],
+  "include": [
+    "./**/*.ts",
+    "./playwright.config.ts",
+    "../vitest.config.ts",
+    "./**/*.html"
+  ]
+}

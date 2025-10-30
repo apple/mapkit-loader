@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["*"]
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
+jobs:
+  validate:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check
+      - run: npm run setup:playwright
+      - run: npm run test
+
+  publish:
+    needs: validate
+    runs-on: ubuntu-latest
+    # run on version tags only
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      # Ensure npm 11.5.1 or later is installed
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm publish --dry-run
