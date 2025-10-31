@@ -44,4 +44,4 @@ jobs:
       # Ensure npm 11.5.1 or later is installed
       - run: npm install -g npm@latest
       - run: npm ci
-      - run: npm publish --dry-run
+      - run: npm publish
