@@ -1,13 +1,12 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: ["**"]
     tags: ["*"]
-
-permissions:
-  id-token: write # Required for OIDC
-  contents: read
 
 jobs:
   validate:
@@ -27,6 +26,9 @@ jobs:
       - run: npm run test
 
   publish:
+    permissions:
+      id-token: write # Required for OIDC
+      contents: read
     needs: validate
     runs-on: ubuntu-latest
     # run on version tags only
