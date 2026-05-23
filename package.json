@@ -34,7 +34,7 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
     "build:esm": "tsc --module ES2020 --outDir dist/esm",
-    "prepublishOnly": "npm run build & npm run check",
+    "prepublishOnly": "npm run build && npm run check",
     "check": "npm run typecheck && npm run lint:check && npm run format:check",
     "lint:check": "eslint",
     "lint:fix": "eslint --fix",
