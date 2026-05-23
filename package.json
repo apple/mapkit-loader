@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git_url"
+    "url": "git+https://github.com/apple/mapkit-loader.git"
   },
   "workspaces": [
     "examples/*"
