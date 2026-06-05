@@ -22,7 +22,7 @@ test("should load and initialize MapKit", async ({ page }) => {
       token: token,
       language: "es",
       libraries: ["map", "services", "overlays"],
-      version: "5.79.x",
+      version: "6",
       data: {
         value: "1",
       },
@@ -35,7 +35,7 @@ test("should load and initialize MapKit", async ({ page }) => {
     `script`,
     `[data-token="${process.env.MAPKIT_TOKEN}"]`,
     `[data-libraries="map,services,overlays"]`,
-    `[src*="5.79.x"]`,
+    `[src*="6"]`,
     `[data-value="1"]`,
   ].join("");
 
@@ -43,7 +43,7 @@ test("should load and initialize MapKit", async ({ page }) => {
   await page.waitForTimeout(1000);
 
   expect(await page.evaluate(() => window.mapkit.version)).toMatch(
-    /5\.\d+\.\d+/,
+    /6\.\d+\.\d+/,
   );
 
   expect(await page.evaluate(() => window.mapkit["loadedLibraries"])).toEqual([

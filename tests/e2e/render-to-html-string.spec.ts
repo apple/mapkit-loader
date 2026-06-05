@@ -39,7 +39,7 @@ test("should load and initialize MapKit", async ({ page }) => {
   await page.waitForFunction(() => !!window.mapkit);
 
   expect(await page.evaluate(() => window.mapkit.version)).toMatch(
-    /5\.\d+\.\d+/,
+    /6\.\d+\.\d+/,
   );
 
   expect(await page.evaluate(() => window.mapkit["loadedLibraries"])).toEqual([

@@ -1,6 +1,6 @@
 {
   "name": "@apple/mapkit-loader",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Apple MapKit JS Loader",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -67,7 +67,7 @@
     "vite": "^7.1.2"
   },
   "dependencies": {
-    "@types/apple-mapkit": "^5.80.0"
+    "@types/apple-mapkit": "^6.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

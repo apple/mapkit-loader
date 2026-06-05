@@ -41,7 +41,7 @@ test.describe("MapKit integration suit", () => {
 
       test(`should load and instantiate MapKit`, async ({ page }) => {
         expect(await page.evaluate(() => window.mapkit.version)).toMatch(
-          /5\.\d+\.\d+/,
+          /6\.\d+\.\d+/,
         );
 
         expect(
